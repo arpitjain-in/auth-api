@@ -9,11 +9,12 @@ app.use(express.json());
 const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key-change-this";
 const PORT = process.env.PORT || 3000;
 
-// MySQL database configuration using connection string
+// MySQL database configuration
 const dbConfig = {
-  uri:
-    process.env.DATABASE_URL ||
-    "mysql://root:hEjbCUdBzdkrBBdbGfufHzcmwZayuFXu@nozomi.proxy.rlwy.net:58553/railway",
+  host: process.env.DB_HOST || "localhost",
+  user: process.env.DB_USER || "root",
+  password: process.env.DB_PASSWORD || "",
+  database: process.env.DB_NAME || "railway",
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
