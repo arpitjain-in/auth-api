@@ -9,7 +9,7 @@ app.use(express.json());
 const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key-change-this";
 const PORT = process.env.PORT || 3000;
 
-// MySQL database configuration
+// MySQL database configuration using connection string
 const dbConfig = {
   host: process.env.DB_HOST || "localhost",
   user: process.env.DB_USER || "root",
@@ -112,7 +112,7 @@ app.post("/api/register", async (req, res) => {
 
       // Insert user into database
       const [result] = await connection.query(
-        "INSERT INTO users (username, 'abc@xyz.com', passwordHash, salt, is_active) VALUES (?, ?, ?, ?, TRUE)",
+        "INSERT INTO users (username, email, passwordHash, salt, is_active) VALUES (?, ?, ?, ?, TRUE)",
         [username, email || null, clientHash, salt],
       );
 
